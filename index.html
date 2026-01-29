@@ -41,11 +41,8 @@
         }
         section { margin-bottom: 45px; }
         
-        /* Forza il bianco sui tag di stato */
-        .status-line { margin-bottom: 12px; font-size: 1.05em; opacity: 0; }
-        .status-tag { font-weight: bold; color: var(--white) !important; margin-right: 15px; }
-        
-        #whoami p, .log-item, #connect p { opacity: 0; }
+        .status-line { margin-bottom: 12px; font-size: 1.05em; }
+        .status-tag { font-weight: bold; color: var(--white); margin-right: 15px; }
         
         .log-item { margin-bottom: 10px; border-left: 2px solid var(--dim-green); padding-left: 10px; }
         .log-date { color: var(--white); font-weight: bold; margin-right: 10px; }
@@ -108,35 +105,5 @@
             C:\> READY<span class="cursor"></span>
         </footer>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const textElements = document.querySelectorAll('#whoami p, .status-line, .log-item, #connect p');
-            
-            textElements.forEach((el, index) => {
-                const originalHTML = el.innerHTML;
-                el.innerHTML = '';
-                el.style.opacity = '1';
-                
-                setTimeout(() => {
-                    let i = 0;
-                    const typing = setInterval(() => {
-                        if (i < originalHTML.length) {
-                            if (originalHTML.charAt(i) === '<') {
-                                const tagEnd = originalHTML.indexOf('>', i);
-                                el.innerHTML += originalHTML.substring(i, tagEnd + 1);
-                                i = tagEnd + 1;
-                            } else {
-                                el.innerHTML += originalHTML.charAt(i);
-                                i++;
-                            }
-                        } else {
-                            clearInterval(typing);
-                        }
-                    }, 10); // Turbo speed: 10ms
-                }, index * 150); // Latenza ridotta a 150ms per riga
-            });
-        });
-    </script>
 </body>
 </html>
