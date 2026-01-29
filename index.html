@@ -9,6 +9,7 @@
             --green: #39ff14;
             --bg: #050505;
             --dim-green: #003300;
+            --white: #ffffff;
         }
         body {
             background-color: var(--bg);
@@ -40,11 +41,14 @@
         }
         section { margin-bottom: 45px; }
         
-        .status-line { margin-bottom: 12px; font-size: 1.05em; }
-        .status-tag { font-weight: bold; color: #fff; margin-right: 15px; }
+        /* --- CLASSI PER I COLORI --- */
+        .status-line { margin-bottom: 12px; font-size: 1.05em; opacity: 0; }
+        .status-tag { font-weight: bold; color: var(--white) !important; margin-right: 15px; }
         
-        .log-item { margin-bottom: 10px; opacity: 0.7; }
-        .loading { animation: blink 1.5s infinite; }
+        #whoami p, .log-item, #connect p { opacity: 0; }
+        
+        .log-item { margin-bottom: 10px; border-left: 2px solid var(--dim-green); padding-left: 10px; }
+        .log-date { color: var(--white); font-weight: bold; margin-right: 10px; }
 
         a { color: var(--green); text-decoration: none; border-bottom: 1px dotted var(--green); }
         a:hover { background-color: var(--green); color: var(--bg); border-bottom: none; }
@@ -90,7 +94,7 @@
         <section id="logs">
             <h2>> SYSTEM_LOGS</h2>
             <div class="log-item">
-                [ PENDING ] Content synchronization in progress... <span class="loading">_</span>
+                [ PENDING ] Content synchronization in progress...
             </div>
         </section>
 
@@ -104,35 +108,35 @@
             C:\> READY<span class="cursor"></span>
         </footer>
     </div>
+
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const textElements = document.querySelectorAll('#whoami p, .status-line, .log-item, #connect p');
-        
-        textElements.forEach((el, index) => {
-            const originalText = el.innerHTML;
-            el.innerHTML = ''; // Svuota l'elemento
-            el.style.visibility = 'visible';
+        document.addEventListener('DOMContentLoaded', () => {
+            const textElements = document.querySelectorAll('#whoami p, .status-line, .log-item, #connect p');
             
-            setTimeout(() => {
-                let i = 0;
-                const typing = setInterval(() => {
-                    if (i < originalText.length) {
-                        // Gestisce i tag HTML (come <strong> o <a>) per non romperli
-                        if (originalText.charAt(i) === '<') {
-                            const tagEnd = originalText.indexOf('>', i);
-                            el.innerHTML += originalText.substring(i, tagEnd + 1);
-                            i = tagEnd + 1;
+            textElements.forEach((el, index) => {
+                const originalHTML = el.innerHTML;
+                el.innerHTML = '';
+                el.style.opacity = '1';
+                
+                setTimeout(() => {
+                    let i = 0;
+                    const typing = setInterval(() => {
+                        if (i < originalHTML.length) {
+                            if (originalHTML.charAt(i) === '<') {
+                                const tagEnd = originalHTML.indexOf('>', i);
+                                el.innerHTML += originalHTML.substring(i, tagEnd + 1);
+                                i = tagEnd + 1;
+                            } else {
+                                el.innerHTML += originalHTML.charAt(i);
+                                i++;
+                            }
                         } else {
-                            el.innerHTML += originalText.charAt(i);
-                            i++;
+                            clearInterval(typing);
                         }
-                    } else {
-                        clearInterval(typing);
-                    }
-                }, 20); // Velocità di scrittura (20ms è un buon equilibrio)
-            }, index * 400); // Ritardo tra una riga e l'altra (effetto caricamento sequenziale)
+                    }, 10); // Velocità di scrittura rapida
+                }, index * 200); // Latenza tra le righe ridotta
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
