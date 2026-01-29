@@ -104,5 +104,35 @@
             C:\> READY<span class="cursor"></span>
         </footer>
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const textElements = document.querySelectorAll('#whoami p, .status-line, .log-item, #connect p');
+        
+        textElements.forEach((el, index) => {
+            const originalText = el.innerHTML;
+            el.innerHTML = ''; // Svuota l'elemento
+            el.style.visibility = 'visible';
+            
+            setTimeout(() => {
+                let i = 0;
+                const typing = setInterval(() => {
+                    if (i < originalText.length) {
+                        // Gestisce i tag HTML (come <strong> o <a>) per non romperli
+                        if (originalText.charAt(i) === '<') {
+                            const tagEnd = originalText.indexOf('>', i);
+                            el.innerHTML += originalText.substring(i, tagEnd + 1);
+                            i = tagEnd + 1;
+                        } else {
+                            el.innerHTML += originalText.charAt(i);
+                            i++;
+                        }
+                    } else {
+                        clearInterval(typing);
+                    }
+                }, 20); // Velocità di scrittura (20ms è un buon equilibrio)
+            }, index * 400); // Ritardo tra una riga e l'altra (effetto caricamento sequenziale)
+        });
+    });
+</script>
 </body>
 </html>
