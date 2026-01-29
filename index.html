@@ -41,7 +41,7 @@
         }
         section { margin-bottom: 45px; }
         
-        /* --- CLASSI PER I COLORI --- */
+        /* Forza il bianco sui tag di stato */
         .status-line { margin-bottom: 12px; font-size: 1.05em; opacity: 0; }
         .status-tag { font-weight: bold; color: var(--white) !important; margin-right: 15px; }
         
@@ -133,8 +133,8 @@
                         } else {
                             clearInterval(typing);
                         }
-                    }, 10); // Velocità di scrittura rapida
-                }, index * 200); // Latenza tra le righe ridotta
+                    }, 10); // Turbo speed: 10ms
+                }, index * 150); // Latenza ridotta a 150ms per riga
             });
         });
     </script>
