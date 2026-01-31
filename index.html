@@ -49,61 +49,41 @@
             <h2 class="title">> ACCESS_POINT</h2>
 <section>
     <h2>> ACCESS_POINT</h2>
-    <div class="row">
-        <span class="cmd">CONTACT:</span> 
-        <a href="#" id="secure-link" style="text-decoration: underline; color: var(--green);">[ REQUEST_SECURE_CONNECTION ]</a>
-    </div>
-    <div class="row"><span class="cmd">LOC:</span> Genoa, Italy</div>
-</section>
-<script>
-    // Questo script "costruisce" l'email solo quando un umano clicca
-    document.getElementById('secure-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Definiamo i pezzi separati (invisibili ai bot)
-        var u = "edu.surace";
-        var d = "gmail.com";
-        
-        // Lanciamo il comando mailto
-        window.location.href = "mailto:" + u + "@" + d;
-        
-        // Feedback visivo nel terminale
-        this.innerHTML = "CONNECTION_ESTABLISHED: " + u + "@" + d;
-    });
-
-    // Mantieni anche lo script precedente per l'effetto typing!
-    document.addEventListener('DOMContentLoaded', () => {
-        const elements = document.querySelectorAll('.row, .title');
-        let index = 0;
-        function showNext() {
-            if (index < elements.length) {
-                elements[index].classList.add('visible');
-                index++;
-                setTimeout(showNext, 200);
-            }
-        }
-        setTimeout(showNext, 600);
-    });
-</script>        </section>
+<section id="section-4">
+            <h2 class="title" style="margin-bottom: 5px;">> ACCESS_POINT</h2>
+            <div class="row">
+                <span class="cmd">CONTACT:</span> 
+                <a href="#" id="secure-link" style="text-decoration: underline; color: var(--green);">[ REQUEST_SECURE_CONNECTION ]</a>
+            </div>
+            <div class="row"><span class="cmd">LOC:</span> Genoa, Italy</div>
+        </section>
 
         <footer style="margin-top: 30px;">C:\> READY_FOR_INPUT<span class="cursor"></span></footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const rows = document.querySelectorAll('.row, .title');
+            // 1. Gestione Animazione Typing
+            const elements = document.querySelectorAll('.row, .title');
             let index = 0;
-
-            function showNextRow() {
-                if (index < rows.length) {
-                    rows[index].classList.add('visible');
+            function showNext() {
+                if (index < elements.length) {
+                    elements[index].classList.add('visible');
                     index++;
-                    setTimeout(showNextRow, 150); // Velocità di "caricamento" tra le righe
+                    setTimeout(showNext, 180);
                 }
             }
+            setTimeout(showNext, 500);
 
-            // Inizia l'animazione dopo un piccolo delay
-            setTimeout(showNextRow, 500);
+            // 2. Protezione Email Anti-Spam
+            document.getElementById('secure-link').addEventListener('click', function(e) {
+                e.preventDefault();
+                var u = "edu.surace";
+                var d = "gmail.com";
+                window.location.href = "mailto:" + u + "@" + d;
+                this.innerHTML = "CONNECTION_ESTABLISHED: " + u + "@" + d;
+                this.style.textDecoration = "none";
+            });
         });
     </script>
 </body>
