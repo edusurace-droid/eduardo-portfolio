@@ -8,6 +8,15 @@
     <meta name="robots" content="noarchive">
 
     <style>
+        @media print {
+    body { display: none !important; }
+    html::after {
+        content: "ACCESS DENIED: UNAUTHORIZED EXPORT ATTEMPT DETECTED.";
+        color: red;
+        font-size: 20pt;
+        font-family: monospace;
+    }
+}
         :root { 
             --cyan: #00d4ff; 
             --navy-dim: #001a33; 
