@@ -6,13 +6,8 @@
     <title>Eduardo Surace | Legal Counsel</title>
 
     <meta name="robots" content="noarchive">
-    <meta property="og:title" content="Eduardo Surace | Legal Counsel">
-    <meta property="og:description" content="Strategic Governance & International Defense Industry. Focus: JV IT/FR, PoA Architecture, Corporate Integrity.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.eduardosurace.com/">
 
     <style>
-        /* Palette Navy/Cyan per un look professionale e tecnologico */
         :root { 
             --cyan: #00d4ff; 
             --navy-dim: #001a33; 
@@ -28,11 +23,12 @@
             line-height: 1.6; 
             max-width: 850px; 
             margin: auto;
-            /* Protezione: impedisce la selezione del testo */
+            /* Protezione: Impedisce la selezione manuale del testo */
             user-select: none; 
             -webkit-user-select: none; 
             -moz-user-select: none; 
             -ms-user-select: none;
+            transition: filter 0.3s ease;
         }
 
         .term-container { 
@@ -49,7 +45,6 @@
             font-size: 0.85em; 
             letter-spacing: 2px; 
             font-weight: bold; 
-            color: var(--cyan);
         }
 
         h2 { 
@@ -59,7 +54,7 @@
             padding: 4px 15px; 
             font-size: 0.9em; 
             text-transform: uppercase; 
-            margin: 25px 0 10px 0; 
+            margin: 25px 0 8px 0; 
             opacity: 0; 
         }
 
@@ -70,15 +65,9 @@
             color: var(--cyan); 
             text-decoration: none; 
             border-bottom: 1px dotted var(--cyan); 
-            transition: all 0.3s;
         }
-        
-        a:hover { background: var(--cyan); color: var(--bg); }
 
-        .visible { 
-            opacity: 1 !important; 
-            transition: opacity 0.6s ease-in; 
-        }
+        .visible { opacity: 1 !important; transition: opacity 0.6s ease-in; }
 
         footer { 
             margin-top: 40px; 
@@ -105,19 +94,19 @@
         </section>
 
         <section>
-            <h2 class="title" style="margin-bottom: 8px;">> CORE COMPETENCIES</h2>
-            <div class="row"><span class="cmd">[ 01 ] CORPORATE_GOVERNANCE:</span> JV IT/FR Framework, PoA Architecture.</div>
-            <div class="row"><span class="cmd">[ 02 ] STRATEGIC_PROGRAMS:</span> Defense Contracts Lifecycle.</div>
+            <h2 class="title">> CORE COMPETENCIES</h2>
+            <div class="row"><span class="cmd">[ 01 ] CORPORATE_GOVERNANCE:</span> JV IT/FR Framework, PoA Architecture (SpA/SaS).</div>
+            <div class="row"><span class="cmd">[ 02 ] STRATEGIC_PROGRAMS:</span> Defense Contracts Lifecycle (EPC/MLU).</div>
             <div class="row"><span class="cmd">[ 03 ] CORPORATE_INTEGRITY:</span> Ethics & Anti-corruption, NIS2, Data Protection.</div>
         </section>
 
         <section>
-            <h2 class="title" style="margin-bottom: 8px;">> CURRENT OPERATIONS</h2>
-            <div class="row"><span class="cmd">[ ACTIVE ]</span> International project synchronization...</div>
+            <h2 class="title">> CURRENT OPERATIONS</h2>
+            <div class="row"><span class="cmd">[ ACTIVE ]</span> International project synchronization in progress...</div>
         </section>
 
-        <section id="section-4">
-            <h2 class="title" style="margin-bottom: 8px;">> CONTACT GATEWAY</h2>
+        <section>
+            <h2 class="title">> CONTACT GATEWAY</h2>
             <div class="row">
                 <span class="cmd">INQUIRIES:</span> 
                 <a href="#" id="secure-link">[ REQUEST SECURE CONNECTION ]</a>
@@ -125,12 +114,12 @@
             <div class="row"><span class="cmd">LOCATION:</span> Genoa, Italy</div>
         </section>
 
-        <footer>// END OF TRANSMISSION // NO_UNAUTHORIZED_REDISTRIBUTION</footer>
+        <footer>// END OF TRANSMISSION // UNV_PROT_LEVEL_4</footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Animazione comparsa graduale
+            // 1. Animazione comparsa
             const elements = document.querySelectorAll('.row, .title');
             let index = 0;
             function showNext() {
@@ -142,23 +131,33 @@
             }
             setTimeout(showNext, 400);
 
-            // 2. Protezione Email (Offuscamento)
+            // 2. Protezione Email (Obfuscation)
             document.getElementById('secure-link').addEventListener('click', function(e) {
                 e.preventDefault();
                 var u = "edu.surace";
                 var d = "gmail.com";
                 window.location.href = "mailto:" + u + "@" + d;
                 this.innerHTML = "DIRECT_LINE: " + u + "@" + d;
-                this.style.background = "transparent";
                 this.style.border = "none";
             });
 
-            // 3. Protezione: Blocca tasto destro
+            // 3. Protezione: Blur quando si esce dalla finestra (Anti-Screenshot)
+            window.addEventListener('blur', () => { document.body.style.filter = 'blur(10px)'; });
+            window.addEventListener('focus', () => { document.body.style.filter = 'none'; });
+
+            // 4. Protezione: Blocca tasto destro
             document.addEventListener('contextmenu', event => event.preventDefault());
 
-            // 4. Messaggio di sistema in console
-            console.log("%c[ INFO ]", "color: #00d4ff; font-size: 14px; font-weight: bold;");
-            console.log("Authorized access only. Identity verified: Eduardo Surace.");
+            // 5. Protezione: Blocca tasti rapidi (F12, Ctrl+U, Ispeziona)
+            document.onkeydown = function(e) {
+                if(e.keyCode == 123) return false;
+                if(e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) return false;
+                if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+            };
+
+            // 6. Messaggio di sistema in console
+            console.log("%c[ WARNING ]", "color: red; font-size: 20px; font-weight: bold;");
+            console.log("%cAuthorized access only. All activities are monitored.", "color: #00d4ff; font-family: monospace;");
         });
     </script>
 </body>
